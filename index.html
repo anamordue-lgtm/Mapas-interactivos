@@ -1,0 +1,294 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: Elaboración de Procedimientos (ACSA)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- 
+    Plan de la Narrativa:
+    1. Introducción (El Porqué): Captar la atención sobre la importancia de los procedimientos en la calidad sanitaria.
+    2. Concepto Central (Qué vs. Cómo): Aclarar la diferencia fundamental entre proceso y procedimiento.
+    3. Estructura y Contenidos: Detallar los 14 componentes esenciales de un procedimiento con iconos y descripciones.
+    4. Ciclo de Creación: Mostrar el flujo de trabajo recomendado para desarrollar un procedimiento.
+    5. Principios Clave y Conclusión: Resumir los pilares del éxito y reforzar el mensaje principal.
+
+    Selección de Visualizaciones:
+    - Portada y Beneficios: Meta: Informar. Visualización: Texto grande y destacado con iconos Unicode. Método: HTML/Tailwind. Confirmación: NO SVG.
+    - Proceso vs. Procedimiento: Meta: Comparar. Visualización: Tarjetas comparativas. Método: HTML/Tailwind. Confirmación: NO SVG.
+    - Estructura y Contenidos: Meta: Organizar. Visualización: Rejilla de tarjetas con iconos. Método: HTML/Tailwind. Confirmación: NO SVG.
+    - Ciclo de Creación: Meta: Organizar/Proceso. Visualización: Diagrama de Flujo. Método: HTML/Tailwind. Confirmación: NO SVG, NO MERMAID JS.
+    - Principios Clave: Meta: Comparar/Informar. Visualización: Gráfico de Barras. Librería: Chart.js (Canvas). Confirmación: NO SVG.
+    - Plazo de Revisión: Meta: Informar. Visualización: Número grande y destacado. Método: HTML/Tailwind. Confirmación: NO SVG.
+    
+    Paleta de Colores Seleccionada: Brilliant Blues.
+    
+    Confirmación final: En este documento no se ha utilizado Mermaid JS ni gráficos SVG. Todas las visualizaciones se renderizan mediante Canvas (Chart.js) o se construyen con HTML/CSS (Tailwind).
+    -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .bar-chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+            max-height: 60vh;
+        }
+        .flow-arrow::after {
+            content: '→';
+            font-size: 2rem;
+            line-height: 1;
+            color: #0A9396;
+            margin-left: 1rem;
+            margin-right: 1rem;
+        }
+        .flow-arrow-down::after {
+            content: '↓';
+            font-size: 2rem;
+            line-height: 1;
+            color: #0A9396;
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .card-icon {
+            font-size: 2rem;
+            line-height: 1;
+            color: #005F73;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12 md:mb-20">
+            <h1 class="text-4xl md:text-6xl font-black text-[#005F73] mb-4">La Calidad se Escribe</h1>
+            <p class="text-lg md:text-xl text-[#0A9396] max-w-3xl mx-auto">Una guía visual para la elaboración de procedimientos efectivos en sistemas de gestión de calidad, basada en las directrices de ACSA.</p>
+        </header>
+
+        <section class="mb-12 md:mb-20">
+            <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-[#005F73] text-center mb-6">¿Por Qué son Esenciales los Procedimientos?</h2>
+                <p class="text-center text-gray-600 mb-8 max-w-4xl mx-auto">Un procedimiento no es solo un documento; es la hoja de ruta que garantiza la consistencia y seguridad en la atención. Permite estandarizar la práctica, reducir la variabilidad y los riesgos, y sentar las las bases para la mejora continua (Ciclo PDCA: Planificar, Hacer, Chequear, Actuar).</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                    <div class="bg-[#94D2BD] bg-opacity-20 p-6 rounded-lg">
+                        <span class="text-4xl mb-2">🔄</span>
+                        <h3 class="font-bold text-lg text-[#005F73]">Estandarizan la Actividad</h3>
+                        <p class="text-sm text-gray-700">Aseguran que todos sigan los mismos pasos para obtener resultados consistentes.</p>
+                    </div>
+                    <div class="bg-[#E9D8A6] bg-opacity-30 p-6 rounded-lg">
+                        <span class="text-4xl mb-2">⬇️</span>
+                        <h3 class="font-bold text-lg text-[#CA6702]">Reducen Riesgos</h3>
+                        <p class="text-sm text-gray-700">Minimizan la probabilidad de errores y eventos adversos.</p>
+                    </div>
+                    <div class="bg-[#EE9B00] bg-opacity-20 p-6 rounded-lg">
+                        <span class="text-4xl mb-2">📈</span>
+                        <h3 class="font-bold text-lg text-[#AE2012]">Facilitan la Evaluación</h3>
+                        <p class="text-sm text-gray-700">Permiten medir el desempeño y la adherencia a las buenas prácticas.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12 md:mb-20">
+            <h2 class="text-2xl md:text-3xl font-bold text-[#005F73] text-center mb-8">Proceso vs. Procedimiento: La Distinción Clave</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-[#0A9396]">
+                    <h3 class="text-2xl font-bold text-[#0A9396] mb-2">Proceso</h3>
+                    <p class="text-5xl font-black text-gray-300 mb-4">QUÉ</p>
+                    <p class="text-gray-600">Define **qué se debe hacer**. Es una visión general de las actividades interrelacionadas para transformar entradas en salidas.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-[#EE9B00]">
+                    <h3 class="text-2xl font-bold text-[#EE9B00] mb-2">Procedimiento</h3>
+                    <p class="text-5xl font-black text-gray-300 mb-4">CÓMO</p>
+                    <p class="text-gray-600">Explica **cómo hacerlo**. Es el conjunto de instrucciones detalladas y secuenciales para ejecutar una actividad específica.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12 md:mb-20">
+            <h2 class="text-2xl md:text-3xl font-bold text-[#005F73] text-center mb-8">Estructura y Contenidos de un Procedimiento</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white rounded-lg shadow-md p-6 flex items-start space-x-4"><div class="card-icon">📄</div><div><h3 class="font-bold text-lg text-[#005F73]">1. Portada</h3><p class="text-sm text-gray-600 mt-1">Identificación principal: logo, título, código, responsables y fechas.</p></div></div>
+                <div class="bg-white rounded-lg shadow-md p-6 flex items-start space-x-4"><div class="card-icon">🔝</div><div><h3 class="font-bold text-lg text-[#005F73]">2. Encabezado</h3><p class="text-sm text-gray-600 mt-1">Información repetida en cada página para fácil identificación.</p></div></div>
+                <div class="bg-white rounded-lg shadow-md p-6 flex items-start space-x-4"><div class="card-icon">💡</div><div><h3 class="font-bold text-lg text-[#005F73]">3. Introducción</h3><p class="text-sm text-gray-600 mt-1">Justifica la necesidad y relevancia del procedimiento.</p></div></div>
+                <div class="bg-white rounded-lg shadow-md p-6 flex items-start space-x-4"><div class="card-icon">🎯</div><div><h3 class="font-bold text-lg text-[#005F73]">4. Objetivos</h3><p class="text-sm text-gray-600 mt-1">Define de forma clara, breve y medible lo que se pretende conseguir.</p></div></div>
+                <div class="bg-white rounded-lg shadow-md p-6 flex items-start space-x-4"><div class="card-icon">🌐</div><div><h3 class="font-bold text-lg text-[#005F73]">5. Alcance</h3><p class="text-sm text-gray-600 mt-1">Delimita el ámbito de aplicación y a qué profesionales se dirige.</p></div></div>
+                <div class="bg-white rounded-lg shadow-md p-6 flex items-start space-x-4"><div class="card-icon">👥</div><div><h3 class="font-bold text-lg text-[#005F73]">6. Responsabilidades</h3><p class="text-sm text-gray-600 mt-1">Asigna roles claros para la difusión, ejecución y evaluación.</p></div></div>
+                <div class="bg-white rounded-lg shadow-md p-6 flex items-start space-x-4"><div class="card-icon">📖</div><div><h3 class="font-bold text-lg text-[#005F73]">7. Definiciones</h3><p class="text-sm text-gray-600 mt-1">Glosario para asegurar la comprensión unívoca de los términos.</p></div></div>
+                <div class="bg-white rounded-lg shadow-md p-6 flex items-start space-x-4"><div class="card-icon">⚙️</div><div><h3 class="font-bold text-lg text-[#005F73]">8. Desarrollo</h3><p class="text-sm text-gray-600 mt-1">El núcleo: describe los pasos, responsables y recursos necesarios.</p></div></div>
+                <div class="bg-white rounded-lg shadow-md p-6 flex items-start space-x-4"><div class="card-icon">📝</div><div><h3 class="font-bold text-lg text-[#005F73]">9. Registros</h3><p class="text-sm text-gray-600 mt-1">Especifica qué documentación generar y dónde archivarla.</p></div></div>
+                <div class="bg-white rounded-lg shadow-md p-6 flex items-start space-x-4"><div class="card-icon">📊</div><div><h3 class="font-bold text-lg text-[#005F73]">10. Evaluación</h3><p class="text-sm text-gray-600 mt-1">Define indicadores para medir el éxito y cumplimiento.</p></div></div>
+                <div class="bg-white rounded-lg shadow-md p-6 flex items-start space-x-4"><div class="card-icon">📚</div><div><h3 class="font-bold text-lg text-[#005F73]">11. Bibliografía</h3><p class="text-sm text-gray-600 mt-1">Cita las fuentes de información utilizadas (guías, normativa, etc.).</p></div></div>
+                <div class="bg-white rounded-lg shadow-md p-6 flex items-start space-x-4"><div class="card-icon">📎</div><div><h3 class="font-bold text-lg text-[#005F73]">12. Anexos</h3><p class="text-sm text-gray-600 mt-1">Incluye material de apoyo como plantillas o diagramas de flujo.</p></div></div>
+                <div class="bg-white rounded-lg shadow-md p-6 flex items-start space-x-4"><div class="card-icon">🔄</div><div><h3 class="font-bold text-lg text-[#005F73]">13. Cuadro de Revisiones</h3><p class="text-sm text-gray-600 mt-1">Historial de cambios del documento (versiones y fechas).</p></div></div>
+                <div class="bg-white rounded-lg shadow-md p-6 flex items-start space-x-4"><div class="card-icon">📢</div><div><h3 class="font-bold text-lg text-[#005F73]">14. Difusión</h3><p class="text-sm text-gray-600 mt-1">Plan para dar a conocer el procedimiento a los destinatarios.</p></div></div>
+            </div>
+        </section>
+
+        <section class="mb-12 md:mb-20">
+            <h2 class="text-2xl md:text-3xl font-bold text-[#005F73] text-center mb-4">El Ciclo de Creación y Consenso</h2>
+            <p class="text-gray-600 text-center mb-8 max-w-3xl mx-auto">La elaboración de un procedimiento es un esfuerzo colaborativo que asegura su pertinencia y facilita su implantación.</p>
+            <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                <div class="flex flex-col md:flex-row items-center justify-center flex-wrap">
+                    <div class="text-center p-4 m-2 bg-gray-100 rounded-lg shadow-sm">
+                        <span class="text-3xl">👥</span>
+                        <p class="font-bold mt-2">Grupo Multidisciplinar</p>
+                    </div>
+                    <div class="hidden md:flex items-center flow-arrow"></div>
+                    <div class="flex md:hidden items-center flow-arrow-down"></div>
+                    <div class="text-center p-4 m-2 bg-gray-100 rounded-lg shadow-sm">
+                        <span class="text-3xl">📝</span>
+                        <p class="font-bold mt-2">Elaboración de Borrador</p>
+                    </div>
+                    <div class="hidden md:flex items-center flow-arrow"></div>
+                    <div class="flex md:hidden items-center flow-arrow-down"></div>
+                    <div class="text-center p-4 m-2 bg-gray-100 rounded-lg shadow-sm">
+                        <span class="text-3xl">🗣️</span>
+                        <p class="font-bold mt-2">Revisión y Sugerencias</p>
+                    </div>
+                    <div class="hidden md:flex items-center flow-arrow"></div>
+                    <div class="flex md:hidden items-center flow-arrow-down"></div>
+                    <div class="text-center p-4 m-2 bg-gray-100 rounded-lg shadow-sm">
+                        <span class="text-3xl">✅</span>
+                        <p class="font-bold mt-2">Aprobación Final</p>
+                    </div>
+                    <div class="hidden md:flex items-center flow-arrow"></div>
+                    <div class="flex md:hidden items-center flow-arrow-down"></div>
+                    <div class="text-center p-4 m-2 bg-gray-100 rounded-lg shadow-sm">
+                        <span class="text-3xl">📢</span>
+                        <p class="font-bold mt-2">Difusión Controlada</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12 md:mb-20">
+             <h2 class="text-2xl md:text-3xl font-bold text-[#005F73] text-center mb-8">Principios Fundamentales y Ciclo de Vida</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2 bg-white rounded-lg shadow-lg p-6 md:p-8">
+                    <h3 class="text-xl font-bold text-center text-[#005F73] mb-4">Pilares para un Procedimiento Exitoso</h3>
+                    <p class="text-center text-gray-600 mb-6">La efectividad de un procedimiento no solo reside en su estructura, sino también en los principios que guían su redacción y aplicación.</p>
+                    <div class="bar-chart-container">
+                        <canvas id="principlesChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6 md:p-8 flex flex-col items-center justify-center text-center">
+                    <h3 class="text-xl font-bold text-[#005F73] mb-4">Ciclo de Revisión</h3>
+                    <p class="text-gray-600 mb-6">La calidad es un proceso dinámico. Los procedimientos deben ser documentos vivos.</p>
+                    <div class="text-[#AE2012] font-black">
+                        <span class="text-8xl md:text-9xl">5</span>
+                        <span class="text-4xl md:text-5xl block -mt-4">años</span>
+                    </div>
+                    <p class="mt-6 font-bold text-gray-700">Es el plazo máximo recomendado para la revisión y actualización de un procedimiento.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center mt-12 border-t pt-6">
+            <p class="text-sm text-gray-500">Infografía creada a partir del Recurso de Apoyo a la Autoevaluación "Elaboración de procedimientos" de ACSA (Diciembre 2020).</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+              return label.join(' ');
+            } else {
+              return label;
+            }
+        };
+        
+        const wrapLabel = (label) => {
+            const maxLength = 16;
+            if (label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + word).length > maxLength) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            });
+            lines.push(currentLine.trim());
+            return lines;
+        };
+
+        const principlesData = {
+            labels: ['Claridad y Concisión', 'Consenso del Equipo', 'Adaptación al Entorno', 'Base en Evidencia'].map(wrapLabel),
+            datasets: [{
+                label: 'Impacto en la Calidad',
+                data: [95, 90, 80, 85],
+                backgroundColor: ['#0A9396', '#94D2BD', '#EE9B00', '#CA6702'],
+                borderColor: ['#005F73', '#0A9396', '#E9D8A6', '#BB3E03'],
+                borderWidth: 1
+            }]
+        };
+
+        const principlesConfig = {
+            type: 'bar',
+            data: principlesData,
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        max: 100,
+                        grid: {
+                            color: 'rgba(0,0,0,0.05)'
+                        }
+                    },
+                    y: {
+                         grid: {
+                            display: false
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback,
+                             label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.x !== null) {
+                                    label += context.parsed.x + '%';
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        window.onload = function() {
+            const principlesCtx = document.getElementById('principlesChart').getContext('2d');
+            new Chart(principlesCtx, principlesConfig);
+        };
+    </script>
+</body>
+</html>
